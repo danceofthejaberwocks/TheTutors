@@ -12,26 +12,41 @@ namespace TheTutors
         static void Main(string[] args)
         {
             Tutors tutors = new Tutors();
-             Tutors TutorName(string firstName, string lastName, int cost)
+            Students students = new Students();
+             Tutors TutorName(Tutors x)
             {
                 Console.WriteLine("What is the tutor's first name?");
-                tutors.firstName = Console.ReadLine();
+                x.firstName = Console.ReadLine();
                 Console.WriteLine("What is the tutor's last name?");
-                tutors.lastName = Console.ReadLine();
+                x.lastName = Console.ReadLine();
                 Console.WriteLine("How much does the tutor cost?");
-                tutors.cost = Int32.Parse(Console.ReadLine());
-                return tutors;
+                x.cost = Int32.Parse(Console.ReadLine());
+                return x;
             }
-            Students students = new Students();
             string a = tutors.firstName;
             string b = tutors.lastName;
             int c = tutors.cost;
             Console.WriteLine(StudentNames());
-            TutorName(a, b, c);
-          
+            TutorName(tutors);
+            Tutors tutor2 = new Tutors();
+            string d = tutor2.firstName;
+            string e = tutor2.lastName;
+            int f = tutor2.cost;
+            TutorName(tutor2);
             Console.ReadKey();
             int currentCredit = StartingCredit(tutors.cost);
-            Console.WriteLine($"Your current credit is {currentCredit}");
+            Console.WriteLine($" The first tutor is : { tutors.firstName} {tutors.lastName }.\n\r " +
+                $"The second tutor is {tutor2.firstName} {tutor2.lastName}");
+            Console.WriteLine($"{tutors.credit(tutors.cost)}");
+            Console.WriteLine($"Your current credit is {currentCredit}. Do you want to add more credit\n\r" +
+                $"Y or N");
+            string input = Console.ReadLine();
+            if (input.ToUpper()=="Y") {
+                int newCredit=AddCredit(currentCredit);
+                
+                Console.WriteLine($"Your current credit is {newCredit}.");
+            }
+            
             Console.ReadLine();
         }
         public static string StudentNames()
@@ -53,7 +68,7 @@ namespace TheTutors
         }
       
 
-        public int AddCredit(int currentCredit)
+        public static int AddCredit(int currentCredit)
         {
             Console.WriteLine("How much credit do you want to add?");
             int input = Int32.Parse(Console.ReadLine());
