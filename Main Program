@@ -9,30 +9,27 @@ namespace TheTutors
 {
     class Program
     {
-        public Tutors Tutors(string firstName, string lastName, int cost)
-        {
-            Tutors tutors = new Tutors();
-            Console.WriteLine("What is the tutor's first name?");
-            tutors.firstName = Console.ReadLine();
-            Console.WriteLine("What is the tutor's last name?");
-            tutors.lastName = Console.ReadLine();
-            Console.WriteLine("How much does the tutor cost?");
-            tutors.cost = Int32.Parse(Console.ReadLine());
-            return tutors;
-        }
-
         static void Main(string[] args)
         {
             Tutors tutors = new Tutors();
+             Tutors TutorName(string firstName, string lastName, int cost)
+            {
+                Console.WriteLine("What is the tutor's first name?");
+                tutors.firstName = Console.ReadLine();
+                Console.WriteLine("What is the tutor's last name?");
+                tutors.lastName = Console.ReadLine();
+                Console.WriteLine("How much does the tutor cost?");
+                tutors.cost = Int32.Parse(Console.ReadLine());
+                return tutors;
+            }
             Students students = new Students();
-            int b = tutors.cost;
-            
-            Console.WriteLine(Tutors(tutors.firstName, tutors.lastName, tutors.cost));
+            string a = tutors.firstName;
+            string b = tutors.lastName;
+            int c = tutors.cost;
             Console.WriteLine(StudentNames());
+            TutorName(a, b, c);
+          
             Console.ReadKey();
-            //Console.WriteLine("Enter a number");
-            //string input = Console.ReadLine();
-            //tutors.cost = Int32.Parse(input);
             int currentCredit = StartingCredit(tutors.cost);
             Console.WriteLine($"Your current credit is {currentCredit}");
             Console.ReadLine();
@@ -54,17 +51,6 @@ namespace TheTutors
             int currentCredit = startingCredit - a;
             return currentCredit;
         }
-        /*public  string TutorNames(Tutors )
-        {
-            Tutors tutors = new Tutors();
-            Console.WriteLine("What is the tutor's first name?");
-            tutors.firstName = Console.ReadLine();
-            Console.WriteLine("What is the tutor's last name?");
-            tutors.lastName = Console.ReadLine();
-            Console.WriteLine("How much does the tutor cost?");
-            tutors.cost = Int32.Parse(Console.ReadLine());
-            b = tutors.cost;
-        }*/
       
 
         public int AddCredit(int currentCredit)
