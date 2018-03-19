@@ -1,0 +1,29 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using TheTutors.People;
+
+namespace TheTutors.People
+{
+    class Students
+    {
+        Tutors tutors = new Tutors();
+        public string firstName;
+        public string lastName;
+        public int credit;
+       public Students StudentNames(Students x)
+        {
+            Console.WriteLine("What is the student's first name?");
+            x.firstName = Console.ReadLine();
+            Console.WriteLine("What is the students's last name?");
+            x.lastName = Console.ReadLine();
+            Console.WriteLine("What is their starting credit?");
+            x.credit = Int32.Parse(Console.ReadLine());
+            return x;
+
+        }
+    }
+}
+
