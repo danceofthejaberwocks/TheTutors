@@ -1,0 +1,42 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace TheTutors.People
+{
+    class Tutors
+    {
+
+        public string firstName { get; set; }
+
+        public string lastName { get; set; }
+        public int cost { get; set; }
+        private int EarnedCredit(int payMe)
+        {
+            int a = 0;
+            a = payMe + a;
+            return a;
+        }
+
+        public string credit(int y)
+        {
+            y = EarnedCredit(y);
+            return $"{firstName} {lastName} has earned {y}";
+        }
+
+        public Tutors TutorName(Tutors x)
+
+        {
+            Console.WriteLine("What is the tutor's first name?");
+            x.firstName = Console.ReadLine();
+            Console.WriteLine("What is the tutor's last name?");
+            x.lastName = Console.ReadLine();
+            Console.WriteLine("How much does the tutor cost?");
+            x.cost = Int32.Parse(Console.ReadLine());
+            return x;
+        }
+        
+    }
+}
