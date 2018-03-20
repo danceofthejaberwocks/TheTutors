@@ -1,0 +1,47 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace TheTutors.People
+{
+    class Tutors
+    {
+
+        public string firstName { get; set; }
+
+        public string lastName { get; set; }
+        public int cost { get; set; }
+        public int balance {get; set;}
+        private int EarnedCredit(int x, int payMe)
+        {
+            int y = payMe + x;
+            return y;
+        }
+
+        public int credit(int x, int y)
+        {
+
+            return EarnedCredit(x,y);
+      }
+
+        //this sets my base variables. It will work for any instance of Tutors()
+        //you just gotta pass the instance name into the input parameter
+        //it will return the instance set to the variables you need
+        public Tutors TutorName(Tutors x)
+
+        {
+            Console.WriteLine("What is the tutor's first name?");
+            x.firstName = Console.ReadLine();
+            Console.WriteLine("What is the tutor's last name?");
+            x.lastName = Console.ReadLine();
+            Console.WriteLine("How much does the tutor cost?");
+            x.cost = Int32.Parse(Console.ReadLine());
+            x.balance = 0;
+            //that starts everyone's starting balance to 0
+            return x;
+        }
+        
+    }
+}
