@@ -5,25 +5,142 @@ using System.Text;
 using System.Threading.Tasks;
 using TheTutors.People;
 
-namespace TheTutors.People
+namespace TheTutors
 {
-    class Students
+    class Program
     {
-        Tutors tutors = new Tutors();
-        public string firstName;
-        public string lastName;
-        public int credit;
-       public Students StudentNames(Students x)
+        static void Main(string[] args)
         {
-            Console.WriteLine("What is the student's first name?");
-            x.firstName = Console.ReadLine();
-            Console.WriteLine("What is the students's last name?");
-            x.lastName = Console.ReadLine();
-            Console.WriteLine("What is their starting credit?");
-            x.credit = Int32.Parse(Console.ReadLine());
-            return x;
+            Tutors tutors = new Tutors();
+            Tutors tutor2 = new Tutors();      
+            Students students = new Students();
+            //this block intializes all my required class instances first so they can be accessed in the main code block
+
+            int tutorsCredit=0;
+            int tutor2Credit=0;
+
+            //this method finds out how much credit you have; deducts tutor fee and runs balance check. 
+            // if you are under balance it prompts you to add credit 
+            int StartingCredit(int a, int b)
+            {
+                  students.credit= a - b;
+                if (students.credit <= 0)
+                {
+                    Console.WriteLine("You can't afford that. Do you want to add credit? Y or N");
+                    string answer = Console.ReadLine();
+                    if (answer.ToUpper() == "Y")
+                    {
+                        students.credit=AddCredit(a); 
+
+                        //I used a here because we want to use the orginal value passed in;
+                        // you don't want to take away the cost if they can't actually afford it yet. 
+
+                    }
+
+                }
+               
+                return students.credit;
+            }
+
+            //this is the main menu. While loop forces you to go back so you can add more
+            bool menu = true;
+            while (menu == true)
+            {
+                Console.WriteLine("Welcome to The Tutors. Do you want to: \r\n" +
+                    "A. Add tutor 1 \r\n" +
+                    "B Add tutor 2 \r\n"+
+                    "C. Add a student\r\n" +
+                    "D.Study\r\n" +
+                    "E. Check tutor 1 balance\r\n" +
+                    "F. Check tutor 2 balance\r\n"+
+                    "G.Exit"
+                    );
+                // I was having issues trying to make instances of tutors in a list and I don't know collection so I made 
+                // tutor 1 and tutor 2 
+                string choice = Console.ReadLine();
+                if (choice.ToUpper() == "A")
+                {
+                    tutors.TutorName(tutors);
+                    //this prompts the method to set first name, last name and cost for tutor 1
+                }
+                else if (choice.ToUpper()=="B")
+                {
+                    tutor2.TutorName(tutor2);
+                    //sets variables for tutor 2
+                }
+                else if (choice.ToUpper() == "C")
+                {
+                    students.StudentNames(students);
+                    //this sets the name and starting credit for your student. Only the last student entered 
+                    //will work right now bc of the (students) parameter
+                }
+                else if (choice.ToUpper() == "D")
+                {                    
+                    Console.WriteLine($"Which tutor do you want to use?\nHit 1 for {tutors.firstName} {tutors.lastName}\nHit 2 for {tutor2.firstName} {tutor2.lastName}\nIf you are done studying, hit" +
+                       " any other key");
+                    string tutorChoice = Console.ReadLine();
+                    if (tutorChoice == "1")
+                    {
+                        int currentCredit = StartingCredit(students.credit, tutors.cost);
+                         tutorsCredit= tutors.credit(tutors.balance, tutors.cost);
+                         Console.WriteLine($"{tutors.firstName} {tutors.lastName} balance is  {tutorsCredit}");
+
+                        Console.WriteLine($"Your current credit is {currentCredit}. Do you want to add more credit\n\r" +
+                        $"Y or N");
+                        string input = Console.ReadLine();
+                        if (input.ToUpper() == "Y")
+                        {
+                            int newCredit = AddCredit(currentCredit);
+
+                            Console.WriteLine($"Your current credit is {newCredit}.");
+                        }
+                    }
+                    else if (tutorChoice == "2")
+                    {
+                        int currentCredit = StartingCredit(students.credit, tutor2.cost);
+                        tutor2Credit= tutor2.credit(tutor2.balance, tutor2.cost);
+                         Console.WriteLine($"{tutor2.firstName} {tutor2.lastName} balance is  {tutor2Credit}");
+                        Console.WriteLine($"Your current credit is {currentCredit}. Do you want to add more credit\n\r" +
+                        $"Y or N");
+                        string input = Console.ReadLine();
+                        if (input.ToUpper() == "Y")
+                        {
+                            int newCredit = AddCredit(currentCredit);
+
+                            Console.WriteLine($"Your current credit is {newCredit}.");
+                        }
+
+                    }
+                    }
+                    else if (choice.ToUpper()=="E")
+                    {
+                     Console.WriteLine($"Your balance is  {tutorsCredit}");
+                    }
+                    else if (choice.ToUpper()=="F")
+                    {
+                        Console.WriteLine($"Your balance is {tutor2Credit}");
+                    }
+                
+                else
+                {
+                    menu = false;
+                }
+                Console.ReadLine();
+            }
 
         }
+     
+
+        public static int AddCredit(int currentCredit)
+        {
+            Console.WriteLine("How much credit do you want to add?");
+            int input = Int32.Parse(Console.ReadLine());
+            int newCredit = currentCredit + input;
+            return newCredit;
+        }
+
     }
 }
 
+
+    
